@@ -109,7 +109,7 @@ export default function LoginForm() {
         </form>
       </div>
       <div className="right-side">
-        <h2 className="title">Привет, Чмо!</h2>
+        <h2 className="title">Привет!</h2>
         <p className="form-description">
           Нет аккаунта ? Нажми кнопку "Зарегистрироваться" и начни свое
           путешествие с <b>TaskTracker</b>
