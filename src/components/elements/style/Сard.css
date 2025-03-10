@@ -1,4 +1,4 @@
-.container {
+.card-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.container .btn-card-delete_cross {
+.card-container .btn-card_cross {
   position: absolute;
   right: 15px;
   width: 10px;
@@ -24,11 +24,11 @@
   transition: all 0.5s ease;
 }
 
-.btn-card-delete_cross img {
+.btn-card_cross img {
   width: 100%;
 }
 
-.btn-card-delete_cross:hover {
+.btn-card_cross:hover {
   transform: rotate(90deg);
 }
 
@@ -70,31 +70,6 @@
   font-weight: 500;
   font-size: 14px;
   margin-right: 10px;
-}
-
-.btn-card-complete {
-  font-weight: 500;
-  font-size: 14px;
-
-  background: none;
-  border: 1px solid var(--light-grey);
-  border-radius: 10px;
-
-  width: 140px;
-  height: 30px;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-}
-
-.btn-card-complete:hover {
-  background-color: #646464;
-}
-
-.completed {
-  border-color: #66d05c;
-  pointer-events: none;
 }
 
 .important {

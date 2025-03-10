@@ -33,8 +33,5 @@ textarea,
 select {
   cursor: pointer;
   font-family: inherit;
-}
-
-button {
   color: #fff;
 }

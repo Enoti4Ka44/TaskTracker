@@ -7,6 +7,7 @@ import Card from "../elements/Card";
 import ActionButton from "../elements/ActionButton";
 import DeleteTaskModal from "../elements/DeleteTaskModal";
 import TaskModal from "./TaskModal";
+import CategoryCard from "../elements/CategoryCard";
 
 import "./style/MainPage.css";
 
@@ -43,6 +44,7 @@ export default function MainPage() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [usersCategoryId, setUsersCategoryId] = useState(null);
 
+  const [whatToRender, setWhatToRender] = useState("cards");
   const [display, setDisplay] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
@@ -172,6 +174,33 @@ export default function MainPage() {
     setTaskToDelete(null);
     setIsTaskModalOpen(false);
   };
+  const handleDeleteCategory = async (categoryToDelete) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://89.22.225.116:8080/api/task/category/${categoryToDelete}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        console.log("Категория удалена");
+        setUsersCategories((prevCategory) =>
+          prevCategory.filter((category) => category.id !== categoryToDelete)
+        );
+      } else {
+        const errorData = await response.json();
+        console.error("Ошибка сервера:", errorData);
+      }
+    } catch (error) {
+      console.error("Ошибка сети:", error);
+    }
+  };
 
   const defaultCategories = categories.map((category) => (
     <CategoryButton
@@ -200,6 +229,15 @@ export default function MainPage() {
       onCompleteTask={handleCompleteTask}
       onDeleteTask={handleOpenDeleteModal}
       onOpenTask={(isOpen) => handleOpenTaskModal(isOpen, card)}
+    />
+  ));
+
+  const categoriesToRender = usersCategories.map((category) => (
+    <CategoryCard
+      key={category.id}
+      id={category.id}
+      name={category.name}
+      onDeleteCategory={handleDeleteCategory}
     />
   ));
 
@@ -239,12 +277,32 @@ export default function MainPage() {
             />
           </div>
           <div className="category-sidebar">
-            <button className="btn-view-all">Посмотреть все категории</button>
+            {whatToRender === "cards" ? (
+              <button
+                onClick={() => setWhatToRender("categories")}
+                className="btn-view-all"
+              >
+                Посмотреть все категории
+              </button>
+            ) : (
+              <button
+                onClick={() => setWhatToRender("cards")}
+                className="btn-view-all"
+              >
+                Вернуться к задачам
+              </button>
+            )}
             {defaultCategories} {сustomCategories}{" "}
           </div>
         </div>
 
-        <div className="cards">{cardsToRender}</div>
+        <div className="cards">
+          {whatToRender === "cards"
+            ? cardsToRender
+            : whatToRender === "categories"
+            ? categoriesToRender
+            : ""}
+        </div>
         {isCreateTaskModalOpen && (
           <CreateTaskModal
             categories={usersCategories}

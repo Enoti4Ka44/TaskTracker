@@ -1,14 +1,14 @@
-import "./Сard.css";
+import "./style/Сard.css";
 import { useState } from "react";
 import deleteIcon from "../../assets/close.png";
 import CompleteButton from "./CompleteButton";
 
 export default function Card(props) {
   return (
-    <section className="container" key={props.data.id}>
+    <section className="card-container" key={props.data.id}>
       <div className="card-top" onClick={() => props.onOpenTask(true)}>
         <button
-          className="btn-card-delete_cross"
+          className="btn-card_cross"
           onClick={(e) => {
             e.stopPropagation();
             props.onDeleteTask(true, props.data.id);

@@ -22,6 +22,33 @@
   background: rgba(255, 255, 255, 0.8);
 }
 
+/* Small card button */
+
+.btn-card {
+  width: 140px;
+  height: 30px;
+
+  font-weight: 500;
+  font-size: 14px;
+
+  background: none;
+  border: 1px solid var(--light-grey);
+  border-radius: 10px;
+
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-card:hover {
+  background-color: #646464;
+}
+
+.border-green {
+  border-color: #66d05c;
+  pointer-events: none;
+}
+
 /* Category button */
 
 .btn-category {

@@ -6,7 +6,6 @@ export default function CreateCategoryModal() {
   const [error, setError] = useState("");
   const [sucsess, setSucsess] = useState("");
   const [name, setName] = useState("");
-  console.log(name);
 
   const handleCreateCategory = async () => {
     setError("");
@@ -18,15 +17,14 @@ export default function CreateCategoryModal() {
       return setError("Название не может быть короче 3 символов");
     }
     try {
-      const token = localStorage.getItem("token"); // Получаем токен из localStorage
-      console.log("Токен:", token);
+      const token = localStorage.getItem("token");
       const response = await fetch(
         "http://89.22.225.116:8080/api/task/category",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Добавляем токен в заголовок
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ name }),
         }

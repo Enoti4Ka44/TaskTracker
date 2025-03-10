@@ -13,16 +13,6 @@ export default function CreateTaskModal(props) {
   const [categoryId, setCategoryId] = useState();
   const timeToComplete = `${date}T${time}:00`;
 
-  console.log(
-    title,
-    description,
-    important,
-    date,
-    time,
-    timeToComplete,
-    categoryId
-  );
-
   const handleCreateTask = async () => {
     setError("");
     setSucsess("");

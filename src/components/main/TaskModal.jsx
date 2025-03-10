@@ -43,7 +43,7 @@ export default function TaskModal(props) {
               <div className="btns-container">
                 {props.data.status === "COMPLETED" ? (
                   <button
-                    className="btn-card-cancel"
+                    className="btn-card"
                     onClick={() => console.log("Work")}
                   >
                     Отменить
@@ -52,7 +52,7 @@ export default function TaskModal(props) {
                   ""
                 )}
                 <button
-                  className="btn-card-delete"
+                  className="btn-card"
                   onClick={() => {
                     props.onDeleteTask(true, props.data.id);
                     handleIsDeleting(true);
