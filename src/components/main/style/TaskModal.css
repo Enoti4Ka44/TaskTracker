@@ -55,11 +55,9 @@
   text-align: start;
   position: relative;
 
-  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
 
-  color: #fff;
   background: none;
   border: 1px solid var(--light-grey);
   border-radius: 10px;
@@ -83,11 +81,9 @@
   width: 140px;
   height: 30px;
 
-  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
 
-  color: #fff;
   background: none;
   border: 1px solid var(--light-grey);
   border-radius: 10px;
@@ -105,11 +101,9 @@
   width: 140px;
   height: 30px;
 
-  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
 
-  color: #fff;
   background: none;
   border: 1px solid var(--light-grey);
   border-radius: 10px;

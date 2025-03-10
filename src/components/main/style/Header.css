@@ -27,14 +27,12 @@ header {
 }
 
 .btn-exit {
-  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
 
   border: 1px solid var(--red);
   border-radius: 10px;
   background: none;
-  color: #fff;
 
   padding: 8px 28px;
 

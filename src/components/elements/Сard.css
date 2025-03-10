@@ -1,4 +1,4 @@
-.card-container {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.card-container .btn-card-delete_cross {
+.container .btn-card-delete_cross {
   position: absolute;
   right: 15px;
   width: 10px;
@@ -73,10 +73,8 @@
 }
 
 .btn-card-complete {
-  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
-  color: #fff;
 
   background: none;
   border: 1px solid var(--light-grey);

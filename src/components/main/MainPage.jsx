@@ -239,6 +239,7 @@ export default function MainPage() {
             />
           </div>
           <div className="category-sidebar">
+            <button className="btn-view-all">Посмотреть все категории</button>
             {defaultCategories} {сustomCategories}{" "}
           </div>
         </div>

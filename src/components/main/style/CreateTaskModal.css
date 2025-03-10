@@ -61,12 +61,13 @@
 textarea,
 select {
   height: 40px;
+  width: 100%;
+  flex-grow: 1;
 
   border: 0;
   outline: 0;
   border-radius: 10px;
 
-  font-family: inherit;
   color: var(--main-black);
   font-weight: 500;
 
@@ -83,22 +84,9 @@ select:focus {
 }
 
 .create-task-form .task-form-input_name {
-  flex-grow: 1;
-}
-
-.create-task-form .task-form-select_category {
-  min-width: 150px;
-
-  flex-grow: 1;
-}
-
-.create-task-form .task-form-input_date,
-.task-form-input_time {
-  width: 100%;
 }
 
 .create-task-form .task-form-input_desc {
-  width: 100%;
   height: 100px;
 }
 
@@ -123,10 +111,9 @@ select:focus {
 
   background-color: var(--red);
 
-  color: #fff;
   font-size: 16px;
   font-weight: 500;
-  font-family: inherit;
+
   text-align: center;
 
   transition: all 0.2s ease;
@@ -148,29 +135,9 @@ select:focus {
   .input-wrapper {
     flex-wrap: wrap;
   }
-
-  .create-task-form .task-form-input_name,
-  .task-form-select_category {
-    flex-grow: 0;
-    width: 100%;
-  }
-
-  .create-task-form .task-form-select_category {
-    max-width: none;
-  }
-
-  .create-task-form .task-form-input_date,
-  .task-form-input_time {
-    width: 45%;
-  }
 }
 
 @media screen and (max-width: 590px) {
-  .create-task-form .task-form-input_date,
-  .task-form-input_time {
-    width: 100%;
-  }
-
   .btn-submit-task {
     height: 40px;
   }

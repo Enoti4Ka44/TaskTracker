@@ -13,7 +13,15 @@ export default function CreateTaskModal(props) {
   const [categoryId, setCategoryId] = useState();
   const timeToComplete = `${date}T${time}:00`;
 
-  console.log(title, description, important, date, categoryId);
+  console.log(
+    title,
+    description,
+    important,
+    date,
+    time,
+    timeToComplete,
+    categoryId
+  );
 
   const handleCreateTask = async () => {
     setError("");
@@ -25,6 +33,10 @@ export default function CreateTaskModal(props) {
     }
     if (description.length >= 255) {
       setError("Описание не может быть длиннее 255 слов");
+      return;
+    }
+    if (!date || !time) {
+      setError("Поля дата и время не могут быть пустыми");
       return;
     }
 
