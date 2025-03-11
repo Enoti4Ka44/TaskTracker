@@ -9,6 +9,7 @@ export default function CreateCategoryModal() {
 
   const handleCreateCategory = async () => {
     setError("");
+    setSucsess("");
 
     if (!name) {
       setError("Название не может быть пустым");
@@ -32,11 +33,16 @@ export default function CreateCategoryModal() {
       if (response.ok) {
         const data = await response.json();
         console.log("Категория создана:", data);
+        setSucsess("Категория успешно создана");
         setName("");
       } else {
         const errorData = await response.json();
-        console.error("Ошибка сервера:", errorData);
-        setError(errorData.message || "Ошибка при создании категории");
+        if (errorData.message === "Category is already exists") {
+          setError("Такая категория уже существует");
+        } else {
+          console.error("Ошибка сервера:", errorData);
+          setError(errorData.message || "Ошибка при создании категории");
+        }
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
@@ -55,12 +61,18 @@ export default function CreateCategoryModal() {
         className="input-create_category"
         placeholder="Введите название категории"
         onChange={(e) => setName(e.target.value)}
+        autoFocus
       />
-      {error && (
+      {(error && (
         <p style={{ marginBottom: 10 }} className="message red">
           {error}!
         </p>
-      )}
+      )) ||
+        (sucsess && (
+          <p style={{ marginBottom: 10 }} className="message green">
+            {sucsess}!
+          </p>
+        ))}
     </div>
   );
 }
