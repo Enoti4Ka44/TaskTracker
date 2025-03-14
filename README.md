@@ -1,8 +1,24 @@
-# React + Vite
+# TaskTracker 
+**Приложение для управления своими задачами )**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Возможность регистрации и входа.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  ![image](https://github.com/user-attachments/assets/358b6d5a-eda7-4287-85c3-98c57fb12d83)
+
+  ___
+
+Управляй своими задачами в пару кликов
+
+![image](https://github.com/user-attachments/assets/744d1d86-6ab9-4438-b6ce-673195ec88d0)
+___
+
+Удаляй, изменяй, редактируй...
+
+![image](https://github.com/user-attachments/assets/b13ea5fc-4aff-4611-a226-2561bc94618f)
+
+
+___
+
+Frontend - (React Js + Rest API + Vite)
+
