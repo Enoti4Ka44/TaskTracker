@@ -15,6 +15,25 @@
   padding: 30px;
 }
 
+.task-modal input,
+textarea {
+  outline: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+
+  padding: 0;
+  padding-bottom: 3px;
+
+  color: #fff;
+}
+
+.task-modal input:focus,
+textarea:focus {
+  border-bottom: 1px white solid;
+  background: none;
+}
+
 .task-modal-top {
   margin-bottom: 80px;
 }
@@ -24,6 +43,18 @@
   font-weight: 700;
 
   margin-bottom: 30px;
+}
+
+.task-input_edit-title {
+  font-size: 32px;
+  font-weight: 700;
+
+  margin-bottom: 30px;
+}
+
+.task-textarea_edit-desc {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .task-modal-top p {

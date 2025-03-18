@@ -5,8 +5,9 @@
 
 .main-sidebar {
   background-color: var(--dark-grey);
-  max-width: 350px;
-  width: 100%;
+  min-width: 340px;
+  max-width: 360px;
+
   height: 624px;
 
   padding: 30px 20px;
@@ -53,7 +54,7 @@
 
   .main {
     max-height: none;
-    height: 100vh;
+    height: 100dvh;
   }
 
   .cards {
