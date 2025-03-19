@@ -2,7 +2,7 @@ import { useState } from "react";
 import checkMarkIcon from "../../assets/check-mark.png";
 import "./style/CreateCategoryModal.css";
 
-export default function CreateCategoryModal() {
+export default function CreateCategoryModal(props) {
   const [error, setError] = useState("");
   const [sucsess, setSucsess] = useState("");
   const [name, setName] = useState("");
@@ -32,7 +32,7 @@ export default function CreateCategoryModal() {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("Категория создана:", data);
+        props.onAddCreatedCategory(data);
         setSucsess("Категория успешно создана");
         setName("");
       } else {

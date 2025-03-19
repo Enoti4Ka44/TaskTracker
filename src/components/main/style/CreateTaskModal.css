@@ -77,13 +77,15 @@ select {
 }
 
 .create-task-form input:focus,
-textarea:focus,
-select:focus {
+.create-task-form textarea:focus,
+.create-task-form select:focus {
   background: rgba(194, 194, 194, 0.8);
   border: none;
 }
 
-.create-task-form .task-form-input_name {
+.create-task-form input:focus,
+.create-task-form textarea:focus {
+  cursor: text;
 }
 
 .create-task-form .task-form-input_desc {

@@ -2,45 +2,70 @@ header {
   height: 76px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   background-color: var(--dark-grey);
   border-bottom: 2px solid #767676;
+
+  padding: 10px 25px;
 }
 
-.logo-mobile {
+.header-logo {
+  padding: 5px 10px;
+  margin-right: 20px;
+  border-radius: 4px;
+
+  background: linear-gradient(
+    107deg,
+    rgba(255, 75, 43, 1) 0%,
+    rgba(255, 65, 108, 1) 100%
+  );
+}
+
+.header-logo-mobile {
   display: none;
 }
 
-.header-left {
-  position: relative;
-  width: 50%;
-}
-
+.header-left,
 .header-right {
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 50%;
   gap: 20px;
-
-  padding-right: 20px;
 }
 
-.btn-exit {
+.header-btn {
+  text-align: center;
   font-size: 14px;
   font-weight: 500;
 
-  border: 1px solid var(--red);
   border-radius: 10px;
   background: none;
 
-  padding: 8px 28px;
+  width: 130px;
+  height: 40px;
 
   transition: all 0.2s ease;
 }
 
-.btn-exit:hover {
+.btn_border-grey {
+  border: 2px solid var(--grey);
+}
+
+.btn_border-grey:hover {
+  background-color: var(--grey);
+}
+
+.btn_border-red {
+  border: 2px solid var(--light-red);
+}
+
+.btn_border-red:hover {
   background-color: var(--light-red);
+}
+
+.btn_active {
+  background-color: var(--grey);
 }
 
 .btn-account {
@@ -67,7 +92,7 @@ header {
     );
   }
 
-  header .logo {
+  .header-logo-mobile {
     display: none;
   }
 }

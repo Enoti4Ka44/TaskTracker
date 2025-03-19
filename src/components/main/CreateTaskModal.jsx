@@ -49,6 +49,7 @@ export default function CreateTaskModal(props) {
       });
       if (response.ok) {
         const data = await response.json();
+        props.onAddCreatedTask(data);
         console.log("Задание создано:", data);
         setSucsess("Задание успешно создано");
         setDate("");

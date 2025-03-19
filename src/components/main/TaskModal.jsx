@@ -8,12 +8,8 @@ export default function TaskModal(props) {
   const [title, setTitle] = useState(props.data.title);
   const [description, setDescription] = useState(props.data.description);
   const [important, setImportant] = useState(props.data.important);
-  const [categoryId, setCategoryId] = useState(0);
-  const [timeToComplete, setTimeToComplete] = useState(
-    props.data.timeToComplete
-  );
-  console.log(props.data);
-  console.log(title, description, important, categoryId, timeToComplete);
+  const [category, setCategoryId] = useState(props.data.category);
+  const [timeToComplete, setTimeToComplete] = useState();
 
   const handleEdit = async () => {
     try {
@@ -30,7 +26,7 @@ export default function TaskModal(props) {
             title,
             description,
             important,
-            categoryId,
+            category,
             timeToComplete,
           }),
         }
@@ -39,12 +35,18 @@ export default function TaskModal(props) {
       if (!response.ok) {
         throw new Error(`Ошибка сервера: ${response.status}`);
       }
-      console.log("Задание успешно изменено:", data);
+
+      const updatedTask = await response.json();
+      props.onTaskUpdate(updatedTask);
       props.onOpenTask(false);
     } catch (error) {
-      console.error("Ошибка при редактировании задачи:", error);
+      alert("Ошибка при редактировании задачи:", error);
     }
   };
+
+  const categoryName = props.categories.find(
+    (cat) => cat.id === props.data.category
+  )?.name;
 
   return (
     <>
@@ -89,8 +91,12 @@ export default function TaskModal(props) {
             <div className="task-modal-bottom_categories">
               <span>Категория: </span>
               <ul>
-                <li className="test">История</li>
-                {props.data.important && <li className="test">Важное</li>}
+                {categoryName && (
+                  <li className="task-modal_category">{categoryName}</li>
+                )}
+                {props.data.important && (
+                  <li className="task-modal_category">Важное</li>
+                )}
               </ul>
             </div>
 

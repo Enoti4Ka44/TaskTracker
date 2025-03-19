@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import accountLogo from "../../assets/account-logo.png";
 import "./style/Header.css";
+import { useState } from "react";
 
-export default function HeaderElement() {
+export default function HeaderElement(props) {
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -12,11 +13,27 @@ export default function HeaderElement() {
   return (
     <header>
       <div className="header-left">
-        <h2 className="logo">Task Tracker</h2>
-        <h2 className="logo-mobile">T</h2>
+        <h2 className="header-logo">Task Tracker</h2>
+        <h2 className="header-logo-mobile">T</h2>
+        <button
+          className={`header-btn btn_border-grey ${
+            props.activeSection === "cards" ? `btn_active` : ""
+          } `}
+          onClick={() => props.onRender("cards")}
+        >
+          Задачи
+        </button>
+        <button
+          className={`header-btn btn_border-grey ${
+            props.activeSection === "categories" ? `btn_active` : ""
+          } `}
+          onClick={() => props.onRender("categories")}
+        >
+          Категории
+        </button>
       </div>
       <div className="header-right">
-        <button className="btn-exit" onClick={handleLogout}>
+        <button className="header-btn btn_border-red" onClick={handleLogout}>
           Выйти
         </button>
 

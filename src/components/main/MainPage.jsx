@@ -174,6 +174,7 @@ export default function MainPage() {
     setTaskToDelete(null);
     setIsTaskModalOpen(false);
   };
+
   const handleDeleteCategory = async (categoryToDelete) => {
     try {
       const token = localStorage.getItem("token");
@@ -200,6 +201,27 @@ export default function MainPage() {
     } catch (error) {
       console.error("Ошибка сети:", error);
     }
+  };
+
+  const handleAddUpdatedTask = (updatedTask) => {
+    setCardData((prevTasks) =>
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
+  const handleAddCreatedTask = (createdTask) => {
+    setCardData((prevTask) => [createdTask, ...prevTask]);
+  };
+
+  const handleAddCreatedCategory = (createdCategory) => {
+    setUsersCategories((prevCategories) => [
+      ...prevCategories,
+      createdCategory,
+    ]);
+  };
+
+  const handleWhatToRender = (whatToRender) => {
+    setWhatToRender(whatToRender);
   };
 
   const defaultCategories = categories.map((category) => (
@@ -243,7 +265,7 @@ export default function MainPage() {
 
   return (
     <>
-      <Header />
+      <Header onRender={handleWhatToRender} activeSection={whatToRender} />
       <main
         className="main"
         onClick={() => handleOpenCategoryModal(false, " ")}
@@ -251,9 +273,11 @@ export default function MainPage() {
         {isTaskModalOpen && (
           <TaskModal
             data={selectedTask}
+            categories={usersCategories}
             onOpenTask={handleOpenTaskModal}
             onCompleteTask={handleCompleteTask}
             onDeleteTask={handleOpenDeleteModal}
+            onTaskUpdate={handleAddUpdatedTask}
           />
         )}
 
@@ -268,7 +292,10 @@ export default function MainPage() {
               display={display}
             />
             {isCategoryModalOpen && (
-              <CreateCategoryModal onIsOpen={handleOpenCategoryModal} />
+              <CreateCategoryModal
+                onIsOpen={handleOpenCategoryModal}
+                onAddCreatedCategory={handleAddCreatedCategory}
+              />
             )}
 
             <ActionButton
@@ -277,22 +304,9 @@ export default function MainPage() {
             />
           </div>
           <div className="category-sidebar">
-            {whatToRender === "cards" ? (
-              <button
-                onClick={() => setWhatToRender("categories")}
-                className="btn-view-all"
-              >
-                Посмотреть все категории
-              </button>
-            ) : (
-              <button
-                onClick={() => setWhatToRender("cards")}
-                className="btn-view-all"
-              >
-                Вернуться к задачам
-              </button>
-            )}
-            {defaultCategories} {сustomCategories}{" "}
+            {whatToRender === "cards"
+              ? [defaultCategories, сustomCategories]
+              : ""}
           </div>
         </div>
 
@@ -307,6 +321,7 @@ export default function MainPage() {
           <CreateTaskModal
             categories={usersCategories}
             onIsOpen={handleOpenCreateTaskModal}
+            onAddCreatedTask={handleAddCreatedTask}
           />
         )}
       </main>

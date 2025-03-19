@@ -15,8 +15,8 @@
   padding: 30px;
 }
 
-.task-modal input,
-textarea {
+.task-input_edit-title,
+.task-textarea_edit-desc {
   outline: none;
   background: none;
   border: 0;
@@ -28,10 +28,11 @@ textarea {
   color: #fff;
 }
 
-.task-modal input:focus,
-textarea:focus {
+.task-input_edit-title:focus,
+.task-textarea_edit-desc:focus {
   border-bottom: 1px white solid;
   background: none;
+  cursor: text;
 }
 
 .task-modal-top {
