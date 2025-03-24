@@ -82,7 +82,7 @@ export const fetchTasksByStatus = async (status) => {
         throw new Error("Токен отсутствует. Пожалуйста, войдите в систему.");
       }
 
-      const url = new URL(`${API_BASE_URL}/api/task/by-category`);
+      const url = new URL(`${API_BASE_URL}/api/task/by-categoryId`);
       url.searchParams.append("id", id);
   
       const response = await fetch(url, {
@@ -109,7 +109,7 @@ export const fetchTasksByStatus = async (status) => {
 export const fetchCategories = async () => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`${API_BASE_URL}/api/task/category`, {
+    const response = await fetch(`${API_BASE_URL}/api/task/categoryId`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

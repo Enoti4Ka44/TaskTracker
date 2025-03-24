@@ -1,12 +1,12 @@
-import "./style/Сard.css";
+import "./Сard.css";
 import { useState } from "react";
-import deleteIcon from "../../assets/close.png";
-import CompleteButton from "./CompleteButton";
+import deleteIcon from "../../icons/close.png";
+import CompleteButton from "../../elements/CompleteButton";
 
 export default function Card(props) {
   return (
     <section className="card-container" key={props.data.id}>
-      <div className="card-top" onClick={() => props.onOpenTask(true)}>
+      <div className="card-top" onClick={() => props.onIsOpen(true)}>
         <button
           className="btn-card_cross"
           onClick={(e) => {

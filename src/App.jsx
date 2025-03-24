@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import "./components/elements/style/elements.css";
-import "./components/crudPage/crudPage.css";
-import RegisterForm from "./components/crudPage/RegisterForm";
-import LoginForm from "./components/crudPage/LoginForm";
-import MainPage from "./components/main/MainPage";
+import "./components/elements/elements.css";
+import "./components/LogReg/Form.css";
+import RegisterForm from "./components/LogReg/RegisterForm";
+import LoginForm from "./components/LogReg/LoginForm";
+import MainPage from "./components/main/MainPage/MainPage";
 
 function App() {
   return (

@@ -30,7 +30,7 @@
   position: relative;
 }
 
-.btn-close-modal-task {
+.btn-close-modal {
   border: 0;
   background: none;
   position: absolute;
@@ -38,14 +38,14 @@
   right: 15px;
 }
 
-.btn-close-modal-task img {
+.btn-close-modal img {
   width: 20px;
   transform: rotate(45deg);
 
   transition: all 0.3s ease;
 }
 
-.btn-close-modal-task img:hover {
+.btn-close-modal img:hover {
   transform: rotate(135deg);
 }
 
@@ -58,8 +58,8 @@
 }
 
 .create-task-form input:not([type="checkbox"]),
-textarea,
-select {
+.create-task-form textarea,
+.create-task-form select {
   height: 40px;
   width: 100%;
   flex-grow: 1;

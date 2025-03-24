@@ -1,6 +1,7 @@
 import { Suspense, useState } from "react";
 import FormInput from "../elements/FormInput";
 import { Link, useNavigate } from "react-router-dom";
+import "./Form.css";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);

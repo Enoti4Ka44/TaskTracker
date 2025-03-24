@@ -1,6 +1,6 @@
 import { useState } from "react";
-import checkMarkIcon from "../../assets/check-mark.png";
-import "./style/CreateCategoryModal.css";
+import checkMarkIcon from "../../icons/check-mark.png";
+import "./CreateCategoryModal.css";
 
 export default function CreateCategoryModal(props) {
   const [error, setError] = useState("");
@@ -20,7 +20,7 @@ export default function CreateCategoryModal(props) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://89.22.225.116:8080/api/task/category",
+        "http://89.22.225.116:8080/api/task/categoryId",
         {
           method: "POST",
           headers: {

@@ -1,4 +1,4 @@
-import plusIcon from "../../assets/plus.png";
+import plusIcon from "../icons/plus.png";
 
 export default function ActionButton(props) {
   return (

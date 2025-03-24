@@ -1,14 +1,14 @@
-import checkMarkIcon from "../../assets/check-mark.png";
-import plusIcon from "../../assets/plus.png";
-import editIcon from "../../assets/edit.png";
-import "./style/TaskModal.css";
+import checkMarkIcon from "../../icons/check-mark.png";
+import plusIcon from "../../icons/plus.png";
+import editIcon from "../../icons/edit.png";
+import "./TaskModal.css";
 import { useState } from "react";
 export default function TaskModal(props) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(props.data.title);
   const [description, setDescription] = useState(props.data.description);
   const [important, setImportant] = useState(props.data.important);
-  const [category, setCategoryId] = useState(props.data.category);
+  const [category, setCategoryId] = useState(props.data.categoryId);
   const [timeToComplete, setTimeToComplete] = useState();
 
   const handleEdit = async () => {
@@ -26,7 +26,7 @@ export default function TaskModal(props) {
             title,
             description,
             important,
-            category,
+            categoryId,
             timeToComplete,
           }),
         }
@@ -38,23 +38,23 @@ export default function TaskModal(props) {
 
       const updatedTask = await response.json();
       props.onTaskUpdate(updatedTask);
-      props.onOpenTask(false);
+      props.onIsOpen(false);
     } catch (error) {
       alert("Ошибка при редактировании задачи:", error);
     }
   };
 
   const categoryName = props.categories.find(
-    (cat) => cat.id === props.data.category
+    (cat) => cat.id === props.data.categoryId
   )?.name;
 
   return (
     <>
-      <div className="overlay">
-        <div className="task-modal">
+      <div className="overlay" onClick={() => props.onIsOpen(false)}>
+        <div className="task-modal" onClick={(e) => e.stopPropagation()}>
           <button
-            className="btn-close-modal-task"
-            onClick={() => props.onOpenTask(false)}
+            className="btn-close-modal"
+            onClick={() => props.onIsOpen(false)}
           >
             <img src={plusIcon} alt="plus icon" />
           </button>

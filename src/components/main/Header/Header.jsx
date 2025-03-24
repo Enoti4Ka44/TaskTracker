@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import accountLogo from "../../assets/account-logo.png";
-import "./style/Header.css";
+import accountLogo from "../../icons/account-logo.png";
+import "./Header.css";
 import { useState } from "react";
 
 export default function HeaderElement(props) {
@@ -38,7 +38,12 @@ export default function HeaderElement(props) {
         </button>
 
         <button className="btn-account">
-          <img src={accountLogo} alt="" className="account-logo-img" />
+          <img
+            src={accountLogo}
+            alt=""
+            className="account-logo-img"
+            onClick={() => props.onIsOpen(true)}
+          />
         </button>
       </div>
     </header>

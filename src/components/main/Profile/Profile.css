@@ -1,0 +1,13 @@
+.profile-modal {
+  width: 100%;
+  max-width: 500px;
+  min-width: 350px;
+
+  background-color: var(--main-black);
+  border: 2px solid #fff;
+  border-radius: 10px;
+
+  position: relative;
+
+  padding: 30px 35px 30px 30px;
+}

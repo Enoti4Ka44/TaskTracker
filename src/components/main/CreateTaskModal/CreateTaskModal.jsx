@@ -1,5 +1,5 @@
-import "./style/CreateTaskModal.css";
-import plusIcon from "../../assets/plus.png";
+import "./CreateTaskModal.css";
+import plusIcon from "../../icons/plus.png";
 import { useState } from "react";
 
 export default function CreateTaskModal(props) {
@@ -87,7 +87,7 @@ export default function CreateTaskModal(props) {
       >
         <h2 className="task-form-title">Создание задачи</h2>
         <button
-          className="btn-close-modal-task"
+          className="btn-close-modal"
           onClick={() => props.onIsOpen(false)}
         >
           <img src={plusIcon} alt="plus icon" />

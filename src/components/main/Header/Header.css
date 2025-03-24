@@ -45,7 +45,10 @@ header {
   width: 130px;
   height: 40px;
 
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.header-btn:active {
+  transform: translateY(5px);
 }
 
 .btn_border-grey {

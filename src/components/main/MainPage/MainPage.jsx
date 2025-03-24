@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
-import CreateTaskModal from "./CreateTaskModal";
-import CreateCategoryModal from "./CreateCategoryModal";
-import CategoryButton from "../elements/CategoryButton";
-import Card from "../elements/Card";
-import ActionButton from "../elements/ActionButton";
-import DeleteTaskModal from "../elements/DeleteTaskModal";
-import TaskModal from "./TaskModal";
-import CategoryCard from "../elements/CategoryCard";
+import Header from "../Header/Header";
+import CreateTaskModal from "../CreateTaskModal/CreateTaskModal";
+import CreateCategoryModal from "../CreateCategoryModal/CreateCategoryModal";
+import Profile from "../Profile/Profile";
 
-import "./style/MainPage.css";
+import CategoryButton from "../../elements/CategoryButton";
+import Card from "../Card/Card";
+import ActionButton from "../../elements/ActionButton";
+import DeleteTaskModal from "../../elements/DeleteTaskModal";
+import TaskModal from "../TaskModal/TaskModal";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
-import allTasksIcon from "../../assets/all.png";
-import completedTasksIcon from "../../assets/completed.png";
-import incompletedTasksIcon from "../../assets/incompleted.png";
-import importantTasksIcon from "../../assets/important.png";
-import customTaskIcon from "../../assets/custom-icon.png";
+import "./MainPage.css";
+
+import allTasksIcon from "../../icons/all.png";
+import completedTasksIcon from "../../icons/completed.png";
+import incompletedTasksIcon from "../../icons/incompleted.png";
+import importantTasksIcon from "../../icons/important.png";
+import customTaskIcon from "../../icons/custom-icon.png";
 
 import {
   fetchAllTasks,
@@ -23,7 +25,7 @@ import {
   fetchImportantTasks,
   fetchTasksByStatus,
   fetchTasksByCategory,
-} from "../data/data";
+} from "../../data/data";
 
 export default function MainPage() {
   const [categories, setCategories] = useState([
@@ -39,6 +41,7 @@ export default function MainPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -67,6 +70,9 @@ export default function MainPage() {
   }
   function handleOpenDeleteModal(isOpen, taskId) {
     return setIsDeleteModalOpen(isOpen), setTaskToDelete(taskId);
+  }
+  function handleOpenProfileModal(isOpen) {
+    return setIsProfileModalOpen(isOpen);
   }
   function handleFilterCategory(categoryName) {
     return setCategoryFilter(categoryName);
@@ -179,7 +185,7 @@ export default function MainPage() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://89.22.225.116:8080/api/task/category/${categoryToDelete}`,
+        `http://89.22.225.116:8080/api/task/categoryId/${categoryToDelete}`,
         {
           method: "DELETE",
           headers: {
@@ -250,7 +256,7 @@ export default function MainPage() {
       data={card}
       onCompleteTask={handleCompleteTask}
       onDeleteTask={handleOpenDeleteModal}
-      onOpenTask={(isOpen) => handleOpenTaskModal(isOpen, card)}
+      onIsOpen={(isOpen) => handleOpenTaskModal(isOpen, card)}
     />
   ));
 
@@ -265,7 +271,11 @@ export default function MainPage() {
 
   return (
     <>
-      <Header onRender={handleWhatToRender} activeSection={whatToRender} />
+      <Header
+        onRender={handleWhatToRender}
+        activeSection={whatToRender}
+        onIsOpen={handleOpenProfileModal}
+      />
       <main
         className="main"
         onClick={() => handleOpenCategoryModal(false, " ")}
@@ -274,12 +284,14 @@ export default function MainPage() {
           <TaskModal
             data={selectedTask}
             categories={usersCategories}
-            onOpenTask={handleOpenTaskModal}
+            onIsOpen={handleOpenTaskModal}
             onCompleteTask={handleCompleteTask}
             onDeleteTask={handleOpenDeleteModal}
             onTaskUpdate={handleAddUpdatedTask}
           />
         )}
+
+        {isProfileModalOpen && <Profile onIsOpen={handleOpenProfileModal} />}
 
         {isDeleteModalOpen && (
           <DeleteTaskModal onDeleteTask={handleDeleteTask} />

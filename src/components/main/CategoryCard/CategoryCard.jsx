@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./style/CategoryCard.css";
+import "./CategoryCard.css";
 
-import checkMarkIcon from "../../assets/check-mark.png";
+import checkMarkIcon from "../../icons/check-mark.png";
 
 export default function CategoryCard(props) {
   const [editName, setEditName] = useState(false);
@@ -16,7 +16,7 @@ export default function CategoryCard(props) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://89.22.225.116:8080/api/task/category",
+        "http://89.22.225.116:8080/api/task/categoryId",
         {
           method: "PUT",
           headers: {
