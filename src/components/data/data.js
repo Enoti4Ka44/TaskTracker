@@ -127,3 +127,26 @@ export const fetchCategories = async () => {
     throw error;
   }
 };
+
+
+export const fetchUserData = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${API_BASE_URL}/api/user/info`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка при загрузке данных пользователя");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Ошибка:", error);
+    throw error;
+  }
+};
