@@ -18,6 +18,8 @@ export default function CategoryButton(props) {
         ? "Невыполненные задания"
         : props.name === "important"
         ? "Важные задания"
+        : props.name === "expired"
+        ? "Просроченные задания"
         : props.name}
     </button>
   );

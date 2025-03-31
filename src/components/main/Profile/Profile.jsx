@@ -28,7 +28,7 @@ export default function Profile(props) {
   }
 
   return (
-    <div className="overlay">
+    <div className="overlay" onClick={() => props.onIsOpen(false)}>
       <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
         <button
           className="btn-close-modal"

@@ -18,6 +18,7 @@ import completedTasksIcon from "../../icons/completed.png";
 import incompletedTasksIcon from "../../icons/incompleted.png";
 import importantTasksIcon from "../../icons/important.png";
 import customTaskIcon from "../../icons/custom-icon.png";
+import expiredTaskIcon from "../../icons/expired.png";
 
 import {
   fetchAllTasks,
@@ -33,6 +34,7 @@ export default function MainPage() {
     { name: "completed" },
     { name: "incompleted" },
     { name: "important" },
+    { name: "expired" },
   ]);
   const [usersCategories, setUsersCategories] = useState([]);
   const [cardData, setCardData] = useState([]);
@@ -57,6 +59,7 @@ export default function MainPage() {
     incompleted: incompletedTasksIcon,
     important: importantTasksIcon,
     custom: customTaskIcon,
+    expired: expiredTaskIcon,
   };
 
   function handleOpenCreateTaskModal(isOpen) {
@@ -91,6 +94,8 @@ export default function MainPage() {
           tasks = await fetchTasksByStatus("COMPLETED");
         } else if (categoryFilter === "incompleted") {
           tasks = await fetchTasksByStatus("CREATED");
+        } else if (categoryFilter === "expired") {
+          tasks = await fetchTasksByStatus("EXPIRED");
         } else if (categoryFilter === "all") {
           tasks = await fetchAllTasks();
         } else {
@@ -116,6 +121,8 @@ export default function MainPage() {
 
     loadCategories();
   }, []);
+
+  console.log(cardData);
 
   const handleCompleteTask = async (taskId) => {
     try {
