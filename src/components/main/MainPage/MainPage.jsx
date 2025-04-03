@@ -122,8 +122,6 @@ export default function MainPage() {
     loadCategories();
   }, []);
 
-  console.log(cardData);
-
   const handleCompleteTask = async (taskId) => {
     try {
       const token = localStorage.getItem("token");

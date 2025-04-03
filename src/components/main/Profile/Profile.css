@@ -75,6 +75,11 @@
   margin-bottom: 15px;
 }
 
+.profile-modal__input::placeholder {
+  color: var(--grey);
+  font-size: 14px;
+}
+
 .profile-modal__btn-wrapper {
   display: flex;
   justify-content: space-between;
