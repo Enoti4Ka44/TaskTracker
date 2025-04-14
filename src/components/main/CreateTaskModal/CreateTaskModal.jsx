@@ -51,7 +51,7 @@ export default function CreateTaskModal(props) {
         const data = await response.json();
         props.onAddCreatedTask(data);
         console.log("Задание создано:", data);
-        setSucsess("Задание успешно создано");
+        toast.success("Задание создано");
         setDate("");
         setTime("");
         setImportant(false);
@@ -61,11 +61,11 @@ export default function CreateTaskModal(props) {
       } else {
         const errorData = await response.json();
         console.error("Ошибка сервера:", errorData);
-        setError(errorData.message || "Ошибка при создании задания");
+        toast.error("Ошибка при создании задания");
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
-      setError("Ошибка сети");
+      toast.error("Ошибка сети");
     }
   };
 
@@ -85,6 +85,12 @@ export default function CreateTaskModal(props) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        <ToastContainer
+          position="bottom-right"
+          theme="colored"
+          closeOnClick
+          onClick={(e) => e.stopPropagation()}
+        />
         <h2 className="task-form-title">Создание задачи</h2>
         <button
           className="btn-close-modal"

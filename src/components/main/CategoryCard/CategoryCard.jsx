@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import "./CategoryCard.css";
 
 import checkMarkIcon from "../../icons/check-mark.png";
@@ -29,19 +30,29 @@ export default function CategoryCard(props) {
       if (response.ok) {
         const data = await response.json();
         console.log("Категория изменена:", data);
+        toast.success("Категория изменена");
+        props.onUpdateCategory({ id, name: newName });
         setEditName(false);
       } else {
         const errorData = await response.json();
         console.error("Ошибка сервера:", errorData);
+        toast.error("Ошибка сервера");
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
+      toast.error("Ошибка сети");
     }
   };
 
   return (
     <>
       <section className="category-container">
+        <ToastContainer
+          position="bottom-right"
+          theme="colored"
+          closeOnClick
+          onClick={(e) => e.stopPropagation()}
+        />
         <div className="category-text">
           <p>Категория:</p>
 

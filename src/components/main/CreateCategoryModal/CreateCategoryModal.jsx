@@ -1,21 +1,18 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import checkMarkIcon from "../../icons/check-mark.png";
 import "./CreateCategoryModal.css";
 
 export default function CreateCategoryModal(props) {
-  const [error, setError] = useState("");
-  const [sucsess, setSucsess] = useState("");
   const [name, setName] = useState("");
 
   const handleCreateCategory = async () => {
-    setError("");
-    setSucsess("");
-
     if (!name) {
-      setError("Название не может быть пустым");
+      toast.error("Название не может быть пустым");
       return;
     } else if (name.length < 3) {
-      return setError("Название не может быть короче 3 символов");
+      toast.error("Название не может быть короче 3 символов");
+      return;
     }
     try {
       const token = localStorage.getItem("token");
@@ -33,25 +30,26 @@ export default function CreateCategoryModal(props) {
       if (response.ok) {
         const data = await response.json();
         props.onAddCreatedCategory(data);
-        setSucsess("Категория успешно создана");
+        toast.success("Категория успешно создана");
         setName("");
       } else {
         const errorData = await response.json();
         if (errorData.message === "Category is already exists") {
-          setError("Такая категория уже существует");
+          toast.error("Такая категория уже существует");
         } else {
           console.error("Ошибка сервера:", errorData);
-          setError(errorData.message || "Ошибка при создании категории");
+          toast.error("Ошибка при создании категории");
         }
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
-      setError("Ошибка сети");
+      toast.error("Ошибка сети");
     }
   };
 
   return (
     <div className="wrapper-create_category">
+      <ToastContainer position="bottom-right" theme="colored" closeOnClick />
       <button className="btn-create_category" onClick={handleCreateCategory}>
         <img src={checkMarkIcon} alt="" />
       </button>
@@ -63,16 +61,6 @@ export default function CreateCategoryModal(props) {
         onChange={(e) => setName(e.target.value)}
         autoFocus
       />
-      {(error && (
-        <p style={{ marginBottom: 10 }} className="message red">
-          {error}!
-        </p>
-      )) ||
-        (sucsess && (
-          <p style={{ marginBottom: 10 }} className="message green">
-            {sucsess}!
-          </p>
-        ))}
     </div>
   );
 }

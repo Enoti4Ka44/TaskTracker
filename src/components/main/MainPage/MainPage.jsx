@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import Header from "../Header/Header";
 import CreateTaskModal from "../CreateTaskModal/CreateTaskModal";
 import CreateCategoryModal from "../CreateCategoryModal/CreateCategoryModal";
@@ -103,7 +104,8 @@ export default function MainPage() {
         }
         setCardData(tasks);
       } catch (error) {
-        console.error("Ошибка при загрузке задач:", error);
+        console.error("Ошибка при загрузке задач", error);
+        toast.error("Ошибка при загрузке задач");
       }
     };
     loadTasks();
@@ -116,6 +118,7 @@ export default function MainPage() {
         setUsersCategories(categories);
       } catch (error) {
         console.error("Ошибка при загрузке категорий:", error);
+        toast.error("Ошибка при загрузке категорий");
       }
     };
 
@@ -138,6 +141,7 @@ export default function MainPage() {
 
       if (response.ok) {
         console.log("Задача завершена");
+        toast.success("Задача завершена");
 
         setCardData((previousCardData) =>
           previousCardData.map((task) =>
@@ -147,9 +151,11 @@ export default function MainPage() {
       } else {
         const errorData = await response.json();
         console.error("Ошибка сервера:", errorData);
+        toast.error("Ошибка сервера");
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
+      toast.error("Ошибка сети");
     }
   };
 
@@ -170,15 +176,18 @@ export default function MainPage() {
 
         if (response.ok) {
           console.log("Задача удалена");
+          toast.success("Задача удалена");
           setCardData((prevTasks) =>
             prevTasks.filter((task) => task.id !== taskToDelete)
           );
         } else {
           const errorData = await response.json();
           console.error("Ошибка сервера:", errorData);
+          toast.error("Ошибка сервера");
         }
       } catch (error) {
         console.error("Ошибка сети:", error);
+        toast.error("Ошибка сети");
       }
     }
     setIsDeleteModalOpen(false);
@@ -202,15 +211,18 @@ export default function MainPage() {
 
       if (response.ok) {
         console.log("Категория удалена");
+        toast.success("Категория удалена");
         setUsersCategories((prevCategory) =>
           prevCategory.filter((category) => category.id !== categoryToDelete)
         );
       } else {
         const errorData = await response.json();
         console.error("Ошибка сервера:", errorData);
+        toast.error("Ошибка сервера");
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
+      toast.error("Ошибка сети");
     }
   };
 
@@ -229,6 +241,14 @@ export default function MainPage() {
       ...prevCategories,
       createdCategory,
     ]);
+  };
+
+  const handleAddUpdatedCategory = (updatedCategory) => {
+    setUsersCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.id === updatedCategory.id ? updatedCategory : category
+      )
+    );
   };
 
   const handleWhatToRender = (whatToRender) => {
@@ -271,6 +291,7 @@ export default function MainPage() {
       id={category.id}
       name={category.name}
       onDeleteCategory={handleDeleteCategory}
+      onUpdateCategory={handleAddUpdatedCategory}
     />
   ));
 
@@ -285,6 +306,13 @@ export default function MainPage() {
         className="main"
         onClick={() => handleOpenCategoryModal(false, " ")}
       >
+        <ToastContainer
+          position="bottom-right"
+          theme="colored"
+          closeOnClick
+          onClick={(e) => e.stopPropagation()}
+        />
+
         {isTaskModalOpen && (
           <TaskModal
             data={selectedTask}
